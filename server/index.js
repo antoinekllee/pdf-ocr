@@ -51,8 +51,6 @@ app.post("/api/upload", upload.single("pdfFile"), async (req, res) => {
         const data = await pdfParse(pdfBuffer);
 
         if (data.text.replace(/\n/g, " ") === "") {
-            console.log("RETURNING:")
-            console.log (data.text)
             return res.json({ text: data.text });
         }
 
