@@ -1,1 +1,4 @@
 node_modules
+eng.traineddata
+.DS_Store
+python
