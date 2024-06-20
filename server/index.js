@@ -50,9 +50,12 @@ app.post("/api/upload", upload.single("pdfFile"), async (req, res) => {
         const pdfBuffer = req.file.buffer;
         const data = await pdfParse(pdfBuffer);
 
-        if (data.text.replace(/\n/g, " ") === "") {
+        if (data.text.replace(/\n/g, "") !== "") {
+            console.log ("Returning text from pdf-parse")
             return res.json({ text: data.text });
         }
+
+        console.log ("Continuing with pdf.js")
 
         const pdfBytes = new Uint8Array(req.file.buffer);
         const loadingTask = getDocument({ data: pdfBytes });
